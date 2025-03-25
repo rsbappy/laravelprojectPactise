@@ -1,6 +1,6 @@
 @extends('master')
 
-@section('title', 'Sub-Category-Crate-Page')
+@section('title', 'Sub-Category-Edit-Page')
 @section('content')
 
 <div class="row">
@@ -16,7 +16,7 @@
                         <option selected>Select Category</option>
 
                         @foreach ($categoies as $category)
-                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                            <option value="{{ $category->id }}">{{ $category->name }}</option>)
 
                         @endforeach
 
@@ -27,7 +27,8 @@
                 </div>
                 <div class="mb-3">
                     <label for="subcategory-name" class="form-label"> SubCategory Name</label>
-                    <input type="text" class="form-control
+                    <input type="text" value="{{ $subcategory->name }}" class="form-control
+
                     @error('subcategory_name') is-invalid
                     @enderror" id="name" name="subcategory_name">
 
@@ -37,19 +38,16 @@
                 </div>
 
 
-                <div class="form-check m-3">
-                    <!-- Hidden input to send 0 if the checkbox is not checked -->
-
-                    <!-- Checkbox input -->
-
-                    <input class="form-check-input"  name="is_active"
+                <div class="form-check mb-3">
+                    <input class="form-check-input"
+                        name="is_active" @if ($subcategory->is_active) checked @endif
 
 
+                        type="checkbox"
+                        id="isActive">
 
-
-                      type="checkbox" id="isActive" >
                     <label class="form-check-label" for="isActive">
-                        Active/Inactive
+                      Active/Inactive
                     </label>
                 </div>
                 <div class="mb-3">
@@ -59,5 +57,10 @@
            </div>
         </div>
     </div>
+
+
+
+
+
 </div>
 @endsection

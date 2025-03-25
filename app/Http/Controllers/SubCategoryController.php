@@ -18,7 +18,7 @@ class SubCategoryController extends Controller
      */
     public function index()
     {
-        $subcategories = Subcategory::with('category')->get(['id', 'name', 'category_id' , 'created_at' ]);
+        $subcategories = Subcategory::get(['id', 'name', 'category_id' , 'created_at',  ]);
         return view('subcategory.index', compact('subcategories'));  // Create a view file in resources/views/subcategory/index.blade.php
 
 
@@ -30,6 +30,7 @@ class SubCategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
+
     {
         $categoies = Category::get(['id', 'name']);
         return view('subcategory.create', compact('categoies'));  // Create a view file in resources/views/subcategory/create.blade.php
@@ -44,6 +45,8 @@ class SubCategoryController extends Controller
     public function store(SubcategoryStoreRequst $request)
 
     {
+
+
         Subcategory::create([
             'category_id' => $request->category_id,
             'name' => $request->subcategory_name,
@@ -73,8 +76,12 @@ class SubCategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
+
     {
-        //
+
+        $categoies = Category::get(['id', 'name']);
+        $subcategory= Subcategory::find($id);
+        return view('subcategory.edit', compact('categoies', 'subcategory'));
     }
 
     /**
