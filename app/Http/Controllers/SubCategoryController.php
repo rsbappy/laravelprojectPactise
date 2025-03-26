@@ -9,6 +9,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Requests\SubcategoryStoreRequst;
 use App\Http\Requests\SubCategoryUpdateRequest;
+use Brian2694\Toastr\Facades\Toastr;
 
 class SubCategoryController extends Controller
 {
@@ -55,8 +56,11 @@ class SubCategoryController extends Controller
             'is_active' => $request->filled('is_active'),
         ]);
          // This will display all the data that you have submitted from the form
-         session()->flash('success', 'Category created successfully');
-        return back();
+        // session()->flash('success', 'Category created successfully');
+         Toastr::success('Category created successfully ');
+
+
+         return back();
     }
 
     /**
@@ -102,7 +106,7 @@ class SubCategoryController extends Controller
             'slug' => str::slug($request->subcategory_name),
             'is_active' => $request->filled('is_active'),
         ]);
-        session()->flash('success', 'Category updated successfully');
+        Toastr::success('Category updated successfully');
         return redirect()->route('subcategory.index');
     }
 
@@ -115,7 +119,7 @@ class SubCategoryController extends Controller
     public function destroy($id)
     {
         Subcategory::find($id)->delete();
-        session()->flash('success', 'Category deleted successfully');
+        Toastr::success('Category deleted successfully');
         return redirect()->route('subcategory.index');
     }
 }

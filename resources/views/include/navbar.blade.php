@@ -7,28 +7,27 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="{{route('home')}}">Home</a>
+            <a class="nav-link active" aria-current="page" href="{{ route('home') }}">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{route('about')}}"> About</a>
+            <a class="nav-link" href="{{ route('about') }}">About</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{route('contact')}}">Contact</a>
+            <a class="nav-link" href="{{ route('contact') }}">Contact</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{route('services')}}">services</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{route('category.create')}}">Create Category</a>
+            <a class="nav-link" href="{{ route('services') }}">Service</a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="{{route('subcategory.index')}}">Create SubCategory</a>
+            <a class="nav-link" href="{{ route('category.index') }}">Categories</a>
           </li>
-
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('subcategory.index') }}">SubCategories</a>
+          </li>
 
         </ul>
 
       </div>
     </div>
-  </nav>
+</nav>

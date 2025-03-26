@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CategoryStoreRequest;
-use App\Models\category;
+use App\Models\Category;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Http\Requests\CategoryStoreRequest;
+use Brian2694\Toastr\Facades\Toastr;
+use Illuminate\Support\Facades\Session;
 
 class CategoryController extends Controller
 {
@@ -15,8 +18,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = category::get(['id', 'name', 'created_at']);
-        return view('category.create', compact('categories'));  // Create a view file in resources/views/category/index.blade.php
+        $categories = Category::get(['id', 'name', 'created_at']);
+        return view('category.index', compact('categories'));
     }
 
     /**
@@ -26,8 +29,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-          $categories = Category::all(); // Fetch all categories from the database
-    return view('category.create', compact('categories'));
+        return view('category.create');
     }
 
     /**
@@ -39,14 +41,15 @@ class CategoryController extends Controller
     public function store(CategoryStoreRequest $request)
     {
 
+        // dd($request->all());
 
-        category::create([
+        Category::create([
             'name' => $request->category_name,
-            'slug' => \illuminate\Support\Str::slug($request->category_name),
-            'is_active' => $request->filled('is_active'),
+            'slug' => Str::slug($request->category_name),
+            'is_active' => $request->filled('is_active')
         ]);
 
-        session()->flash('success', 'Category created successfully');
+        Toastr::success('Category created successfully!');
         return back();
     }
 
@@ -58,7 +61,8 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        //
+        $category = Category::find($id);
+        return view('category.show', compact('category'));
     }
 
     /**
@@ -69,7 +73,8 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $category = Category::find($id);
+        return view('category.edit', compact('category'));
     }
 
     /**
@@ -81,7 +86,15 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $category = Category::find($id);
+        $category->update([
+            'name' => $request->category_name,
+            'slug' => Str::slug($request->category_name),
+            'is_active' => $request->filled('is_active')
+        ]);
+
+        Toastr::success('Category updated successfully!');
+        return back();
     }
 
     /**
@@ -92,6 +105,8 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $category = Category::find($id)->delete();
+        Toastr::success('Category deleted successfully!');
+        return back();
     }
 }
