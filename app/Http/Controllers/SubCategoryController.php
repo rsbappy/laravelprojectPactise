@@ -8,6 +8,7 @@ use App\Models\Subcategory;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Requests\SubcategoryStoreRequst;
+use App\Http\Requests\SubCategoryUpdateRequest;
 
 class SubCategoryController extends Controller
 {
@@ -66,7 +67,8 @@ class SubCategoryController extends Controller
      */
     public function show($id)
     {
-        //
+        $subcategory = Subcategory::find($id);
+        return view('subcategory.show', compact('subcategory'));  // Create a view file in resources/views/subcategory/show.blade.php
     }
 
     /**
@@ -91,9 +93,17 @@ class SubCategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(SubCategoryUpdateRequest $request, $id)
     {
-        //
+        $subcategory = Subcategory::find($id);
+        $subcategory->update([
+            'category_id' => $request->category_id,
+            'name' => $request->subcategory_name,
+            'slug' => str::slug($request->subcategory_name),
+            'is_active' => $request->filled('is_active'),
+        ]);
+        session()->flash('success', 'Category updated successfully');
+        return redirect()->route('subcategory.index');
     }
 
     /**
@@ -104,6 +114,8 @@ class SubCategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Subcategory::find($id)->delete();
+        session()->flash('success', 'Category deleted successfully');
+        return redirect()->route('subcategory.index');
     }
 }

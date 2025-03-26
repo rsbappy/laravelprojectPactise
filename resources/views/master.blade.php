@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Bootstrap CSS -->
-@include('include.style')
+    <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 
     <title>@yield('title')</title>
   </head>
@@ -29,7 +29,8 @@
     </div>
     <!-- Option 1: Bootstrap Bundle with Popper -->
 
-@include('include.script')
+
+<script src="{{ mix('js/app.js') }}"></script>
     <!-- Option 2: Separate Popper and Bootstrap JS -->
     <!--
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>

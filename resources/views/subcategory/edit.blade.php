@@ -8,15 +8,23 @@
     <div class="col-6 m-auto my-3">
         <div class="card p-3">
            <div class="card-body">
-            <form action="{{ route('subcategory.store') }}" method="POST">
+            <form action="{{ route('subcategory.update', ['subcategory' => $subcategory->id] ) }}" method="POST">
+                @method('PUT')
                 @csrf
                 <div class="mb-3">
                     <select class="form-select @error('category_id') is-invalid
                     @enderror" name='category_id' aria-label="Default select example">
-                        <option selected>Select Category</option>
+                        <option>Select Category</option>
 
                         @foreach ($categoies as $category)
-                            <option value="{{ $category->id }}">{{ $category->name }}</option>)
+                            <option value="{{ $category->id }}"
+
+                                @if ($category->id == $subcategory->category_id) selected
+                                 @endif >{{ $category->name }}</option>
+
+                             >
+
+                            {{ $category->name }}</option>
 
                         @endforeach
 
