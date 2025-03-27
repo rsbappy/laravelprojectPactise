@@ -41,4 +41,13 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function nidcard()
+    {
+        return $this->hasOne(Nidcard::class);
+    }
+
+
+
 }
+

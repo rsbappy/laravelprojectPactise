@@ -13,8 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        schema::table('users', function (Blueprint $table) {
-            $table->string('phone_number')->unique();
+        Schema::create('nidcards', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('user_id')->constrained('users');
+            $table->string('card_number');
+            $table->timestamps();
+
         });
     }
 
@@ -25,8 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('phone_number');
-        });
+        Schema::dropIfExists('nidcards');
     }
 };

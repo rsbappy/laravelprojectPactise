@@ -8,6 +8,9 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
+    <link href="
+https://cdn.jsdelivr.net/npm/sweetalert2@11.17.2/dist/sweetalert2.min.css
+" rel="stylesheet">
 
     <title>@yield('title')</title>
   </head>
@@ -38,6 +41,34 @@
         <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
         {!! Toastr::message() !!}
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.17.2/dist/sweetalert2.all.min.js"></script>
+
+
+
+
+<script>
+    $('.show_confirm').click(function(event){
+        let form = $(this).closest('form');
+        event.preventDefault();
+
+        Swal.fire({
+            title: "Are you sure?", text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText:
+            "Yes, delete it!" }).then((result) => { if (result.isConfirmed) {
+                form.submit();
+                Swal.fire({ title: "Deleted!", text: "Your file has been deleted.", icon: "success" }); } });
+
+
+
+
+        }
+    );
+
+</script>
 
     <!-- Option 2: Separate Popper and Bootstrap JS -->
     <!--

@@ -12,8 +12,8 @@ class FrontController extends Controller
 
 
     {
-
-        $users= User::where('created_at', '<=', now())->get();
+        $users= User::with('nidcard')->get();
+        //$users= User::where('created_at', '<=', now())->get();
 
 
 

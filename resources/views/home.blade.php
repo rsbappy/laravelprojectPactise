@@ -18,6 +18,7 @@
             <th scope="col">Name</th>
             <th scope="col">Email</th>
             <th scope="col">Phone Number</th>
+            <th scope="col">Nid Card</th>
             <th scope="col">Joined Date</th>
           </tr>
         </thead>
@@ -27,7 +28,8 @@
             <th scope="row">{{$user->id}}</th>
             <td>{{$user->name}}</td>
             <td>{{$user->email}}</td>
-            <td>{{$user->phone_number}}</td>
+            <td>{{$user->phone}}</td>
+            <td>{{$user->nidcard->card_number?? ''}}</td>
             <td>{{$user->created_at}}</td>
           </tr>
 

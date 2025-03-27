@@ -20,7 +20,7 @@ class SubCategoryController extends Controller
      */
     public function index()
     {
-        $subcategories = Subcategory::get(['id', 'name', 'category_id' , 'created_at',  ]);
+        $subcategories = Subcategory::with('category')->get(['id', 'name', 'category_id' , 'created_at',  ]);
         return view('subcategory.index', compact('subcategories'));  // Create a view file in resources/views/subcategory/index.blade.php
 
 
