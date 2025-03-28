@@ -21,5 +21,7 @@ Route::get('/', [FrontController::class, 'home'])->name('home');
 Route::get('/about-us', [FrontController::class, 'about'])->name('about');
 Route::get('/services-page', [FrontController::class , 'services'] )->name('services');
 Route::get('/contact-page',  UserInfoController::class )->name('contact');
-route::resource('/category', CategoryController::class);
-route::resource('/subcategory', SubCategoryController::class);
+Route::resource('/category', CategoryController::class);
+Route::resource('/subcategory', SubCategoryController::class);
+Route::get('books', [FrontController::class, 'books']);
+

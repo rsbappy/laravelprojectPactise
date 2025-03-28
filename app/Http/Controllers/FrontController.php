@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Book;
 use App\Models\User;
+use Illuminate\Http\Request;
 
 class FrontController extends Controller
 {
@@ -50,6 +51,13 @@ class FrontController extends Controller
     public  function userIndex()
     {
 
+    }
+
+
+    public function books()
+    {
+        $books= Book::all();
+        return $books;
     }
 
 }
